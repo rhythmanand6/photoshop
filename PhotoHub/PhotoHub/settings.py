@@ -8,12 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m6dw&h79=6yq@*s$d%m0i-7(zr=a2hach-x(*2he3ar!p33y=+'
+SECRET_KEY = 'django-insecure-jn@^2fen2n(5v1zu#u)r22=0uzj+xa5@(v*%s(z@pc$(p)4#s4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -26,6 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -43,7 +50,7 @@ ROOT_URLCONF = 'PhotoHub.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -51,6 +58,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -105,8 +113,65 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "assets",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+#For Google :
+# 927715859557-i5b4u0n02k429oh9c6dqrl0d68449sgq.apps.googleusercontent.com = client id
+# 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  = client secret
+
+#For Facebook :
+SOCIAL_AUTH_FACEBOOK_KEY = '2811426542491470'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET ='c8f27e507ac65090aa05de0c2d33c87f' #app key
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'facebook': {
+        'METHOD': 'oauth2',
+        # 'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name'
+        ],
+        'EXCHANGE_TOKEN': True,
+        # 'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v7.0',
+    }
+}
+
+LOGIN_REDIRECT_URL = '/'
