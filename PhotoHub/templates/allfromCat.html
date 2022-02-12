@@ -101,17 +101,15 @@
   </nav>
 
 
-
-  <!--All cards-->
-  {% for cat, catph in  allcatph%}
-   <!--Category-->
+  <!--Category-->
   <div class=" p-5 mt-4">
-    <h1 class=" ml-16 text-2xl font-bold text-red-800">{{cat}}</h1>
+    <h1 class=" ml-16 text-2xl font-bold text-red-800">{{category}}</h1>
   </div>
+
+
   <div class="h-84 flex ml-4 items-left">
-    <!--card-->
-    {% for ph in catph%}
-    {% if forloop.counter < 4 %}
+    {% for ph in  catph%}
+    <!--cards-->
     <div class="drop-shadow-xl hover:drop-shadow-2xl bg-cyan-400 ml-20 mt-4 text-white  p-3 lg:w-1/4 sm:w-4/4 md:w-2/4 rounded-lg text-center py-8  cursor-pointer">
       <div class="flex justify-center mb-2"> <img src="/media/{{ph.image}}"
           class="rounded-full h-48 w-48 flex items-center  justify-center"> </div>
@@ -125,11 +123,6 @@
           class="hover:bg-black-200 ml-1 mt-3 px-6 mr-3 py-3 rounded-lg">Checkout</button>
       </div>
     </div>
-    {% endif %}
     {% endfor %}
-  </div>
-  <div class=" p-5 mt-4">
-    <a href="/allfromCat/{{cat}}"><button>show more</button></a>
-  </div>
-  {% endfor %}
+ </div>
 </body>
