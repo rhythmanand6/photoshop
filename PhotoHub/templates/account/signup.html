@@ -43,7 +43,7 @@
                 <h2 class="text-center mb-3 text-4xl text-indigo-900 font-display font-semibold lg:text-center xl:text-5xl
                     xl:text-bold">Register</h2>
                 <div class="mt-3">
-                    <form class="" method="post" action="/register">{% csrf_token %}
+                    <form class="" method="post" action="/register1">{% csrf_token %}
                         <button
                             class="w-full max-w-lg  font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                             <div class="bg-white p-2 rounded-full">
@@ -78,6 +78,15 @@
                             <input
                                 class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
                                 type="email" name="email" placeholder="mike@gmail.com" required>
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-gray-700 tracking-wide mt-5">Role</div>
+                            <select
+                                class="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500"
+                                type="text"  name="role" placeholder="customer" required>
+                                <option value="Customer">Customer</option>
+                                <option value="Photographer">Photographer</option>
+                            </select>    
                         </div>
                         <div class="mt-4">
                             <div class="flex justify-between items-center">
