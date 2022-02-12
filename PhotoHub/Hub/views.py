@@ -183,15 +183,45 @@ def register_step2(request):
 
 
 def checkout(request):
+    context = {}
     if request.user.is_authenticated:
         if request.user.groups.all()[0].name == 'Photographer':
             ph = Photographer.objects.get(photographer_id=request.user.id)
-            context= {'image': ph.image}
-            return render(request, 'checkout.html', context)
+            context['image'] = ph.image
 
         else :
             cst = Customer.objects.get(customer_id=request.user.id)
-            context= {'image': cst.image}
-            return render(request, 'checkout.html', context)
+            context['image'] = cst.image
+    
+    #creates dictionary for each object
+    catphs = Photographer.objects.values('category', 'photographer_id')
+    cats = {item['category'] for item in catphs}
+    #print(cats)
+    
+    allcatph = []
+    for cat in cats:
+        catph = Photographer.objects.filter(category=cat)
+        tuple = (cat, catph)
+        allcatph.append(tuple)
 
-    return render(request, 'checkout.html')
+   # print(allcatph)    
+    context['allcatph'] = allcatph
+    return render(request, 'checkout.html', context)
+
+
+
+def allfromCat(request, cat):
+    context = {}
+    if request.user.is_authenticated:
+        if request.user.groups.all()[0].name == 'Photographer':
+            ph = Photographer.objects.get(photographer_id=request.user.id)
+            context['image'] = ph.image
+
+        else :
+            cst = Customer.objects.get(customer_id=request.user.id)
+            context['image'] = cst.image
+
+    catph = Photographer.objects.filter(category=cat)
+    context['catph'] = catph
+    context['category'] = cat
+    return render(request, 'allfromCat.html', context)
