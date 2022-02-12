@@ -1,0 +1,29 @@
+{% extends "account/base.html" %}
+
+{% block content %}
+  <!-- Dismissable alert from bootstrap For Django Messages framework -->
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert"  style="margin-bottom:0px">
+   <strong>{{message}}</strong>
+   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h2 class="display-5 fw-bold">Choose your role</h2>
+        <p class="col-md-8 fs-4"><br>Yoy have logged in successfuly through Google. But before moving ahead you need to specify you role. <br> So choose your role and press the submit role button</p>
+        <form action="/glogin" method="post">{% csrf_token %}
+          <label for="cars">Choose a role:</label><br>
+          <select name="role" id="role">
+            <option value="Customer">Customer</option>
+            <option value="Photographer">Photographer</option>
+          </select><br>
+          <button class="btn btn-secondary btn-lg" type="submit">Submit role</button>
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

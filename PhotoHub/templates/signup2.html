@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BiCaption</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --main-color: #186757;
+        }
+
+        .bg-main-color {
+            background-color: var(--main-color);
+        }
+
+        .text-main-color {
+            color: var(--main-color);
+        }
+
+        .border-main-color {
+            border-color: var(--main-color);
+        }
+    </style>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Bootstrap js Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="margin-bottom:0px">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="bg-gray-100 ">
+        <div class="w-full  mb-4 text-white bg-main-color">
+            <div x-data="{ open: false }"
+                class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                <div class="p-4 flex flex-row items-center justify-between">
+                    <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                        <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                        <span class="font-bold">BiCaption</span>
+                    </a>
+                    <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Features</a>
+                    <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">About</a>
+                    <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Carrers</a>
+                </div>
+                <nav :class="{'flex': open, 'hidden': !open}"
+                    class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <button @click="open = !open"
+                            class="flex flex-row items-center space-x-2 w-full px-3 py-2 mt-2 text-sm font-semibold text-left bg-transparent hover:bg-blue-800 md:w-auto md:inline md:mt-0 md:ml-4 hover:bg-gray-200 focus:bg-blue-800 focus:outline-none focus:shadow-outline">
+                            <span>Rhythm Anand </span>
+                            <img class="inline h-6 rounded-full"
+                                src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4" />
+                            <svg fill="currentColor" viewBox="0 0 20 20"
+                                :class="{'rotate-180': open, 'rotate-0': !open}"
+                                class="inline w-4 h-4 transition-transform duration-200 transform">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            class="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                            <div
+                                class="py-2 bg-white text-blue-800 text-sm rounded-sm border border-main-color shadow-sm">
+                                <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                    href="#">Settings</a>
+                                <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                    href="#">Help</a>
+                                <div class="border-b"></div>
+                                <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                    href="#">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!--End of Nav-->
+
+
+        <!--Form here-->
+        <form action="/register2" enctype="multipart/form-data" method="post">{% csrf_token %}
+            <h1 class="text-center text-4xl font-bold mt-8 text-red-800"> Welcome to BiCaption</h1>
+
+            <div class="mt-1 p-4">
+
+                <div class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Full Name</div>
+                <div class="flex flex-col md:flex-row">
+                    <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="fname" type="text" placeholder="First Name"
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                    <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="lname" type="text" placeholder="Last Name"
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                </div>
+                {% if role == 'Photographer' %}
+                  <div class="flex flex-col md:flex-row">
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">Age</div>
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="age" type="number" placeholder="21"
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"> Gender</div>
+                        <div class="bg-white my-2  p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <select name="gender" type="text" placeholder="Male"
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"> Category</div>
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <select name="category" type="text" placeholder="Wedding"
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                                <option value="Event">Event</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Food">Food</option>
+                                <option value="Art and Portrait">Art and Portrait</option>
+                                <option value="Architecture">Architecture</option>
+                                <option value="Documentary">Documentary</option>
+                                <option value="Travel">Travel</option>
+                                <option value="Modelling and Lifestyle">Modelling and Lifestyle</option>
+                                <option value="Nature and Wildlife">Nature and Wildlife</option>
+                                <option value="Product">Product</option>
+                                <option value="Photo Journalism">Photo Journalism</option>
+                            </select>
+                        </div>
+                    </div>
+                  </div>
+                {% endif %} 
+                <div class="flex flex-col md:flex-row">
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"> Phone</div>
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="phone" type="text" placeholder=""
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">State</div>
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="state" type="text" placeholder="Delhi"
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row">
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase">City</div>
+                        <div class="bg-white my-2  p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="city" type="text" placeholder="Just a hint.."
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"> Area</div>
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="area" type="text" placeholder=""
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                    <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                        <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"> Pincode</div>
+                        <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
+                            <input name="pin" type="text" placeholder=""
+                                class="p-1 px-2 appearance-none outline-none w-full text-gray-800" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Taking image from user and showing a preview to user before uploading -->
+                <label for="dp">Upload your display picture</label><br>
+                <input type="file" name="dp" onchange="previewFile()"><br><br>
+                <img id="preview" src="" height="200" alt="Image preview...">
+
+                <input type="text" name="role" id="role" value={{role}} hidden>
+                <input type="text" name="id" id="id" value={{id}} hidden>
+
+                <div class="flex p-2 mt-4">
+
+                    <button type='submit' class="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer 
+        hover:bg-gray-200  
+        bg-gray-100 
+        text-gray-700 
+        border duration-200 ease-in-out 
+                 border-gray-600 transition">Submit</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+<footer>
+    <!-- javascript for showing image preview -->
+    <script>
+        function previewFile() {
+          var preview = document.getElementById('preview');
+          var file    = document.querySelector('input[type=file]').files[0];
+          var reader  = new FileReader();
+  
+          reader.onloadend = function () {
+              preview.src = reader.result;
+          }
+  
+          if (file) {
+              reader.readAsDataURL(file);
+          } else {
+              preview.src = "";
+          }
+       }
+      </script>
+</footer>
+
+</html>
