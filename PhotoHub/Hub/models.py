@@ -1,6 +1,7 @@
+from statistics import mode
 from django.db import models
+from numpy import blackman
 
-# Create your models here.
 
 class Customer(models.Model):
     customer_id = models.IntegerField(default=0, null=True, blank=True)
