@@ -58,11 +58,7 @@ And navigate to `http://localhost:8000/`.
 
 
 ## Hey, Done with Project !! Meet Team Hell Peeks(Helping Geeks)
-<div align="center">
-    <a href="https://allcontributors.org">
-        <img src="docs/assets/logo-full.svg" alt="✨ All Contributors ✨" width="800px" />
-    </a>
-</div>
+
 
 
 
