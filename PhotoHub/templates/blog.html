@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BiCaption</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- Bootstrap js Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <style>
+    .imag{
+      height: 200px;
+      width : 200px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-direction: row;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .flex-item-left {
+      padding: 10px;
+      flex: 50%;
+    }
+
+    .flex-item-right {
+      padding: 10px;
+      flex: 50%;
+    }
+
+    /* Responsive layout - makes a one column-layout instead of two-column layout */
+    @media (max-width: 800px) {
+      .flex-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- navbar -->
+  <nav class="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 hover:drop-shadow-xl">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+
+        <div class="flex space-x-4">
+          <!-- logo -->
+          <div>
+            <a href="/" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+              <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+              <span class="font-extrabold text-gray-800">BiCaption</span>
+            </a>
+          </div>
+
+          <!-- primary nav -->
+          <div class="hidden md:flex items-center space-x-1">
+
+            <a href="#features"
+              class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Features</strong></a>
+
+            {% if request.user.is_authenticated%}
+              {% if role == 'Photographer' %}
+              <a href="/blog/{{id}}_a"
+                class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Blog</strong></a>
+              {% endif %}
+              {% if role == 'Customer'%}
+                {% if city == 'a' %}
+                <a href="/location"
+                  class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                    Now</strong></a>
+                {% else %}
+                <a href="/appointment/{{ph.photographer_id}}_{{city}}"
+                  class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                    Now</strong></a>
+                {% endif %}
+              {% endif %}
+
+            {% else %}
+            <a href="/accounts/login"
+              class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                Now</strong></a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- secondary nav -->
+        <div class="hidden md:flex  items-center space-x-1">
+          {% if request.user.is_authenticated %}
+          <nav :class="{'flex': open, 'hidden': !open}"
+            class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+            {% if pid == id %}
+            <a href="/addPost/{{id}}"
+              class="bg-green-400 text-white hover:bg-gray-400 px-3 py-1 mt-3 border border-gray-600"><button><strong>Add
+                  Post</strong></button></a>
+            {% endif %}
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open"
+                class="flex flex-row items-center space-x-2 w-full px-3 py-2 mt-2 text-sm font-semibold text-left bg-transparent  md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none">
+                <span style="color: rgb(6, 90, 90); font-size: medium;"><span
+                    style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: rgb(9, 171, 192);">Hi</span>
+                  {{request.user}}</span>
+                <img class="inline ml-3 h-6 w-6 rounded-full absolute border border-blue-500 border-3
+                  " style="z-index: 1000;" src="/media/{{image}}" />
+                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
+                  class="inline w-16 h-4 transition-transform duration-200 transform">
+                  <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </button>
+              <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class=" right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                <div
+                  class="absolute py-2 px-8 ml-10 bg-white text-blue-800 text-sm rounded-sm border border-main-color shadow-sm">
+                  <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="/profile0"
+                    style="color: rgb(51, 51, 51); border-bottom: 0.8px solid rgb(156, 156, 156);">Profile</a>
+                  <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="/logout">Logout</a>
+                </div>
+              </div>
+          </nav>
+          {% else %}
+          <a href="/accounts/login" class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Login</a>
+          <a href="/accounts/signup"
+            class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Register</a>
+          {% endif %}
+        </div>
+
+        <!-- mobile button goes here -->
+        <div class="md:hidden flex items-center">
+          <button class="mobile-menu-button">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div class="mobile-menu hidden md:hidden">
+      <a href="#features" class="block py-2 px-4 text-white text-sm hover:bg-gray-200"><strong> Features</strong></a>
+    </div>
+
+  </nav>
+
+
+
+  <div class="grid grid-cols-3 mb-32 divide-x-2 py-16">
+    <div class="col-span-2 ml-24">
+      <!-- post -->
+      {% for pst in post %}
+      <h1 class="text-2xl text-extrabold ml-3 mt-2"><strong>{{pst.head}}</strong></h1>
+      <p class="ml-3 text-sm">{{pst.date}} / 26 comments</p>
+      <div class="flex-container">
+        <div class="flex-item-left mr-1">
+          <img class="imag h-84 w-full mx-auto border border-white border-4" src="/media/{{pst.img1}}" />
+        </div>
+        <div class="flex-item-right mr-1">
+          <img class="imag h-84 w-full mx-auto border border-white border-4" src="/media/{{pst.img2}}" />
+        </div>
+        <div class="flex-item-left mr-1">
+          <img class="imag h-84 w-full mx-auto border border-white border-4" src="/media/{{pst.img3}}" />
+        </div>
+        <div class="flex-item-right">
+          <img class="imag h-84 w-full mx-auto border border-white border-4" src="/media/{{pst.img4}}" />
+        </div>
+      </div>
+      <p class="mt-1 ml-3">{{pst.desc}}</p>
+      <div class="mt-2 ml-2 mb-16">
+        {% if pid == id %}
+        <a href="/editPost/{{pst.id}}"><button
+            class="py-1 px-3 border border-gray-400 rounded-md hover:bg-gray-300 mr-1">Edit</button></a>
+        <a href="/deletePost/{{pst.id}}"><button
+            class="py-1 px-2 border border-gray-400 rounded-md hover:bg-gray-300">Delete</button></a>
+        {% endif %}    
+      </div>
+      {% endfor %}
+    </div>
+    <div class="ml-48">
+      <div class="w-full">
+        <!-- Profile Card -->
+        <div class="text-center  p-1">
+          <div>
+            <div class="image overflow-hidden">
+              <img class="h-84 w-full mx-auto border border-white border-4" src="/media/{{ph.image}}" />
+            </div>
+            <h1 class="pt-1 text-center text-gray-700 font-bold text-2xl leading-8 mt-1">
+              {{ph.fname}} {{ph.lname}}
+            </h1>
+            <h3 class=" text-center text-gray-700 text-lg">
+              {{ph.category}} Photographer
+            </h3>
+            <!-- Rating -->
+            <div class="text-3xl text-yellow-500">{{stars}}</div>
+            <!-- social icons -->
+            <div class="inline-flex mx-auto mb-3">
+              <a href="{{ph.facebook}}">
+                <i style="color:rgb(9, 103, 192); font-size: 1.5rem;" class="fab fa-facebook   py-1 px-2"></i>
+              </a>
+              <a href="{{ph.instagram}}">
+                <i style="color:rgb(236, 58, 162); font-size: 1.5rem;" class="fab fa-instagram py-1 px-1"></i>
+              </a>
+              <a href="{{ph.tweeter}}">
+                <i style="color:rgb(54, 190, 243); font-size: 1.5rem;" class="fab fa-twitter   py-1 px-2"></i>
+              </a>
+            </div>
+          </div>
+          <p style="background-color:rgb(251, 253, 255); color: rgb(35, 145, 196); text-align: left; font-size: 0.8rem;"
+            class="border-1 border-gray-300 rounded-xl px-2 py-1">
+            <a href="tel:{{ph.phone}}"><strong>Call : {{ph.phone}}</strong>
+            </a>
+          </p>
+          <p style="background-color:rgb(251, 253, 255); color:rgb(85, 84, 85); text-align: left; font-size: 0.8rem;"
+            class="border-1 border-gray-300 rounded-xl px-2 py-1 mt-1">
+            <a href="mailto:{{ph.mail}}"><strong>Email : {{ph.email}}</strong></a>
+          </p>
+          {% if ph.bio != None %}
+          <p style="text-align: left; font-size: 0.9rem;" class="px-2 mt-1">
+            {{ph.bio}}
+          </p>
+          {% endif %}
+
+        </div>
+        <!-- End of profile card -->
+        <div class="my-4"></div>
+        <!-- Friends card -->
+        <div class=" p-3 hover:shadow">
+          <div class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
+
+
+          </div>
+
+        </div>
+        <!-- End of friends card -->
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
