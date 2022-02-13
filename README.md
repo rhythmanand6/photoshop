@@ -1,5 +1,8 @@
 # BiCaption 
 
+## About
+This project is presented at HackNITP 4.0 created by team Hell Peeks.
+
 
 ## Problem Statement
 Due to Back to back Covid Waves, and lockdowns, most of the events shifted online and are getting cancelled, due to this actually a industry suffered a lot but no one actually talks about, Why🙄??
@@ -8,8 +11,16 @@ That’s the photography, who suffered a lot of issues out there. The major prob
 
 It has created a huge vac space in the industry and support for them is something yet to be even talked..
 So, it will be too late if we don’t address this problem Now!!
-And our mission is to generalize this problem and create an effective Solution for that
-![image](https://user-images.githubusercontent.com/79482823/153743692-20880c4b-9de0-4cb0-b851-df20bbe42a6c.png)
+And our mission is to generalize this problem and create an effective Solution for that 
+
+
+## Our Motivation
+“Our purpose of the Solution is to connect the needs of the individuals or Companies to
+the Skills they want to hire”
+
+
+
+
 
 
 
@@ -45,6 +56,4 @@ Once `pip` has finished downloading the dependencies:
 And navigate to `http://localhost:8000/`.
 
 
-<a href = "https://github.com/rhythmanand/Python/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo = rhythmanand6/photoshop"/>
-</a>
+
