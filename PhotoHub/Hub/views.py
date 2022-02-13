@@ -26,7 +26,7 @@ def index(request):
     appointments = Appointment.objects.all()
 
     for appointment in appointments:
-        if appointment.zip == sys.maxsize:
+        if appointment.zip == sys.maxsize or appointment.end_date == None:
             appointment.delete()
 
     feedback = []
