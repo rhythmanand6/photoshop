@@ -1,5 +1,11 @@
 # BiCaption 
 
+## Video link:
+[Yt Link](https://youtu.be/5tbV8URpMJ4)
+
+## PPt Link:
+[Presentation](https://docs.google.com/presentation/d/1GMr_IIE_C-mw8dmxoyAZP3zdK1MjbRpB/edit?usp=sharing&ouid=108339058638195931378&rtpof=true&sd=true)
+
 ## About
 This project is presented at HackNITP 4.0 created by team Hell Peeks.
 
