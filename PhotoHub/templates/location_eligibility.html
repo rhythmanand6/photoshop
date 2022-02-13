@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location_Eligibility</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <style>
+        /* For Modal */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      text-align: center;
+      border: 1.5px groove;
+      border-radius: 25px;
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      width: 48%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    .modal-header {
+      padding: 2px 16px;
+      color: rgb(11, 241, 69);
+    }
+
+    .modal-body {
+      padding: 2px 16px;
+    }
+
+    .modal-footer {
+      padding: 2px 16px;
+      color: rgb(4, 136, 37);
+    }
+
+    </style>
+
+</head>
+
+<body class="bg-gray-200">
+    <nav class="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 hover:drop-shadow-xl">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+
+                <div class="flex space-x-4">
+                    <!-- logo -->
+                    <div>
+                        <a href="/" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                            <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg>
+                            <span class="font-extrabold text-gray-800">BiCaption</span>
+                        </a>
+                    </div>
+
+                    <!-- primary nav -->
+                    <div class="hidden md:flex items-center space-x-1">
+
+                        <a href="#"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Features</strong></a>
+                        {% if request.user.is_authenticated%}
+                        {% if role == 'Photographer' %}
+                        <a href="/blog/{{id}}"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Blog</strong></a>
+                        {% endif %}
+                        {% if role == 'Customer'%}
+                        <a href="/location"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                                Now</strong></a>
+                        {% endif %}
+
+                        {% else %}
+                        <a href="/accounts/login"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                                Now</strong></a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- secondary nav -->
+                <div class="hidden md:flex  items-center space-x-1">
+                    {% if request.user.is_authenticated %}
+                    <nav :class="{'flex': open, 'hidden': !open}"
+                        class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                        <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center space-x-2 w-full px-3 py-2 mt-2 text-sm font-semibold text-left bg-transparent  md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none">
+                                <span style="color: rgb(6, 90, 90); font-size: medium;"><span
+                                        style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: rgb(9, 171, 192);">Hi</span>
+                                    {{request.user}}</span>
+                                <img class="inline ml-3 h-6 w-6 rounded-full absolute border border-blue-500 border-3
+                      " style="z-index: 1000;" src="/media/{{image}}" />
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-16 h-4 transition-transform duration-200 transform">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class=" right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                                <div
+                                    class="absolute py-2 px-8 ml-10 bg-white text-blue-800 text-sm rounded-sm border border-main-color shadow-sm">
+                                    <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        href="/profile0"
+                                        style="color: rgb(51, 51, 51); border-bottom: 0.8px solid rgb(156, 156, 156);">Profile</a>
+                                    <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        href="/logout">Logout</a>
+                                </div>
+                            </div>
+                    </nav>
+                    {% else %}
+                    <a href="/accounts/login"
+                        class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Login</a>
+                    <a href="/accounts/signup"
+                        class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Register</a>
+                    {% endif %}
+                </div>
+
+                <!-- mobile button goes here -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <a href="#" class="block py-2 px-4 text-white text-sm hover:bg-gray-200"><strong> Features</strong></a>
+            <a href="#" class="block py-2 px-4 text-white text-sm hover:bg-gray-200"><strong>Pricing</strong></a>
+        </div>
+
+    </nav>
+    
+    <!-- For scrolling text -->
+    <center>
+        <div class="p-3 bg-yellow-400 text-white">
+            <marquee width="60%" direction="right" height="25px">
+               <strong><i class="fas fa-exclamation-triangle text-red-500 text-xl"></i>  You can book appointment only 72 hours in advance  <i class="fas fa-exclamation-triangle text-red-500 text-xl"></i></strong>
+            </marquee>
+        </div>
+    </center>
+
+    <!-- Alerts -->
+  {% if messages %}
+  {% for message in messages %}
+  <div class="flex justify-between p-3 bg-red-100 border border-red-400 text-red-700 rounded relative">
+    <p class="self-center"><strong>{{message}}</strong></p>
+    <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+    <center>
+        <div class="w-full max-w-xs mt-5">
+            <form method="post" action="/location" class="bg-white shadow-md rounded px-8 pt-4 pb-8 mb-4">{% csrf_token %}
+               <i class="fas fa-map-marker-alt text-3xl text-purple-500 hover:text-purple-400 mb-3"></i>
+               <div class="mb-4">
+                <label class="block text-gray-700 text-md font-bold mb-2" for="username">
+                   Choose city name from below list
+                </label>
+                <select class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" name="city"  placeholder="City name">
+                  <option value="Patna">Patna</option> 
+                  <option value="Muzzafarpur">Muzzafarpur</option>  
+                </select>   
+              </div>
+            
+              <div class="mb-6">
+                <label class="block text-gray-700 text-md font-bold mb-2" for="password">
+                  Hours
+                </label>
+                <input class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" type="number" name="hours" placeholder="Choose between 24 to 72" required>
+                <p class="text-center text-gray-500 text-xs">
+                  (Hours from now after which your Event starts.)
+                </p>
+              </div>
+              <div class="items-center justify-between">
+                <button class="bg-purple-500 hover:bg-purple-400 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" type="submit">
+                  Enter
+                </button>
+              </div>
+            </form>
+          </div>
+    </center>
+
+    <!-- Appointment booking rules -->
+    <div id="modal" class="modal">
+        <div class="modal-content bg-gradient-to-r from-yellow-400 to-red-200">
+        <div class="modal-header pt-3">
+            <i class="fas fa-calendar-check details text-green-500 text-5xl"></i>
+            <h1 class="text-white text-xl"><strong>Appointment Booking Guidelines !</strong></h1>
+        </div>
+        <hr class="mt-2">
+        <div class="py-4 modal-body">
+            <strong><h3 class="text-xl text-white">For booking of a successfull appointment :  </h3></strong>
+            <ul>
+            <li><strong><p class="text-white">Your event timing should be minimum 24 hours ahead of now.</p></strong></li>
+            <li><strong><p class="text-white">Your event timing can be maximum 72 hours ahead of now.</p></strong></li>
+            <li><strong><p class="text-white">You should fill in the Form, the number of Hours from now after which your Event starts.</p></strong></li>
+            </ul>
+        </div>
+        <div class="modal-footer py-4">
+            <button id = "close" onclick="closeModal()"  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border border-gray-400 rounded shadow">
+            Ok
+            </button>
+        </div>
+        </div>
+    </div>
+
+    
+    {% if messages %}
+    <script>
+      //For alert :
+     var alert_del = document.querySelectorAll('.alert-del');
+     alert_del.forEach((x) =>
+      x.addEventListener('click', function () {
+        x.parentElement.classList.add('hidden');
+      })
+    );
+
+    </script>
+
+    {% else %}
+    <script>
+      var modal = null
+      
+        window.onload = function(){
+          modal = document.getElementById('modal')
+          modal.style.display = 'block'
+        }
+
+      function closeModal(id){
+        modal.style.display = 'none'
+      }
+    </script>
+  {% endif %}
+</body>
+
+</html>
