@@ -59,6 +59,11 @@ And navigate to `http://localhost:8000/`.
 
 ## Hey, Done with Project !! Meet Team Hell Peeks(Helping Geeks)
 
+* [Abhishek kumar Jha](https://github.com/akj1608)
+* [Rhythm Anand](https://github.com/rhythmanand6)
+* [Rohit Jha](https://github.com/Rohit6010)
+* [Shubham Kumar](https://github.com/shubham69shagun)
+
 
 
 
