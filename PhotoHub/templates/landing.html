@@ -1,561 +1,783 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  
-  <!-- Bootstrap js Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-<style>
- @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-*
+    .hero-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
 
-      
-    
-{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-.hero-pattern {
-        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 40px 100px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      color: #fff;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .toggle {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      background: url(https://i.ibb.co/HrfVRcx/menu.png);
+      background-repeat: no-repeat;
+      background-size: 30px;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    .toggle.active {
+      background: url(https://i.ibb.co/rt3HybH/close.png);
+      background-repeat: no-repeat;
+      background-size: 25px;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    .showcase {
+      position: absolute;
+      right: 0;
+      width: 100%;
+      min-height: 5vh;
+      padding: 100px;
+      display: inline-block;
+      justify-content: space-between;
+      align-items: center;
+      background: #111;
+      transition: 0.5s;
+
+    }
+
+    .showcase.active {
+      right: 300px;
+    }
+
+    .showcase video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #03a9f4;
+      mix-blend-mode: overlay;
+    }
+
+    .text {
+      position: relative;
+
+    }
+
+    .text h2 {
+      font-size: 5em;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1em;
+      text-transform: uppercase;
+    }
+
+    .text h3 {
+      font-size: 4em;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1em;
+      text-transform: uppercase;
+    }
+
+    .text p {
+      text-transform: uppercase;
+      font-size: 1.2em;
+      color: #fff;
+      margin: 20px 0;
+      font-weight: 400;
+      max-width: 700px;
+    }
+
+    .text a {
+      display: inline-block;
+      font-size: 1em;
+      background: #fff;
+      padding: 10px 30px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 10px;
+      color: #111;
+      letter-spacing: 2px;
+      transition: 0.2s;
+    }
+
+    .text a:hover {
+      letter-spacing: 6px;
+    }
+
+
+    @media (max-width: 991px) {
+
+      .showcase,
+      .showcase header {
+        padding: 40px;
       }
-header
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 40px 100px;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-header .logo
-{
-  color: #fff;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.toggle
-{
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: url(https://i.ibb.co/HrfVRcx/menu.png);
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
-  cursor: pointer;
-}
-.toggle.active
-{
-  background: url(https://i.ibb.co/rt3HybH/close.png);
-  background-repeat: no-repeat;
-  background-size: 25px;
-  background-position: center;
-  cursor: pointer;
-}
-.showcase
-{
-  position: absolute;
-  right: 0;
-  width: 100%;
-  min-height: 5vh;
-  padding: 100px;
-  display: inline-block;
-  justify-content: space-between;
-  align-items: center;
-  background: #111;
-  transition: 0.5s;
-  
-}
-.showcase.active
-{
-  right: 300px;
-}
 
-.showcase video
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-}
-.overlay
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #03a9f4;
-  mix-blend-mode: overlay;
-}
-.text
-{
-  position: relative;
-  
-}
+      .text h2 {
+        font-size: 3em;
+      }
 
-.text h2
-{
-  font-size: 5em;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1em;
-  text-transform: uppercase;
-}
-.text h3
-{
-  font-size: 4em;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1em;
-  text-transform: uppercase;
-}
-.text p
-{
-  font-size: 1.1em;
-  color: #fff;
-  margin: 20px 0;
-  font-weight: 400;
-  max-width: 700px;
-}
-.text a
-{
-  display: inline-block;
-  font-size: 1em;
-  background: #fff;
-  padding: 10px 30px;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: 500;
-  margin-top: 10px;
-  color: #111;
-  letter-spacing: 2px;
-  transition: 0.2s;
-}
-.text a:hover
-{
-  letter-spacing: 6px;
-}
+      .text h3 {
+        font-size: 2em;
+      }
+    }
+  </style>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
 
-@media (max-width: 991px)
-{
-  .showcase,
-  .showcase header
-  {
-    padding: 40px;
-  }
-  .text h2
-  {
-    font-size: 3em;
-  }
-  .text h3
-  {
-    font-size: 2em;
-  }
-}
-</style>
 </head>
-<body class="">
-   
 
-<!--video background-->
+<body class="bg-gradient-to-r from-pink-400 to-blue-500">
 
-<!-- Dismissable alert from bootstrap For Django Messages framework -->
-{% if messages %}
-     {% for message in messages %}
-     <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert"  style="margin-bottom:0px">
-      <strong>{{message}}</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    {% endfor %}
-{% endif %}
-
-<!-- navbar goes here -->
-<nav class="bg-gray-100">
+  <!-- navbar goes here -->
+  <nav class="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 hover:drop-shadow-xl">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-between">
-  
+
         <div class="flex space-x-4">
           <!-- logo -->
           <div>
             <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
-              <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
-              <span class="font-bold">BiCaption</span>
+              <span class="font-extrabold text-gray-800">BiCaption</span>
             </a>
           </div>
-  
+
           <!-- primary nav -->
           <div class="hidden md:flex items-center space-x-1">
-            <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Features</a>
-            <a href="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Pricing</a>
+
+            <a href="#features"
+              class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Features</strong></a>
+
+            {% if request.user.is_authenticated%}
+            {% if role == 'Photographer' %}
+            <a href="/blog/{{id}}_a"
+              class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Blog</strong></a>
+            {% endif %}
+            {% if role == 'Customer'%}
+            <a href="/location"
+              class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                Now</strong></a>
+            {% endif %}
+
+            {% else %}
+            <a href="/accounts/login"
+              class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                Now</strong></a>
+            {% endif %}
           </div>
         </div>
-  
+
         <!-- secondary nav -->
         <div class="hidden md:flex  items-center space-x-1">
-          {% if  request.user.is_authenticated %}
-          <a href="/profile" class="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300">Profile</a>
-          <a href="/logout" class="py-5 px-3">Logout</a>
+          {% if request.user.is_authenticated %}
+          <nav :class="{'flex': open, 'hidden': !open}"
+            class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+              <button @click="open = !open"
+                class="flex flex-row items-center space-x-2 w-full px-3 py-2 mt-2 text-sm font-semibold text-left bg-transparent  md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none">
+                <span style="color: rgb(6, 90, 90); font-size: medium;"><span
+                    style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: rgb(9, 171, 192);">Hi</span>
+                  {{request.user}}</span>
+                <img class="inline ml-3 h-6 w-6 rounded-full absolute border border-blue-500 border-3
+                  " style="z-index: 1000;" src="/media/{{image}}" />
+                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-180': open, 'rotate-0': !open}"
+                  class="inline w-16 h-4 transition-transform duration-200 transform">
+                  <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </button>
+              <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class=" right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                <div
+                  class="absolute py-2 px-8 ml-10 bg-white text-blue-800 text-sm rounded-sm border border-main-color shadow-sm">
+                  <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="/profile0"
+                    style="color: rgb(51, 51, 51); border-bottom: 0.8px solid rgb(156, 156, 156);">Profile</a>
+                  <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                    href="/logout">Logout</a>
+                </div>
+              </div>
+          </nav>
           {% else %}
-            <a href="/accounts/login" class="py-5 px-3">Login</a>
-            <a href="/accounts/signup" class="py-5 px-3">Register</a>
+          <a href="/accounts/login" class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Login</a>
+          <a href="/accounts/signup"
+            class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Register</a>
           {% endif %}
         </div>
-    
+
         <!-- mobile button goes here -->
         <div class="md:hidden flex items-center">
           <button class="mobile-menu-button">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
-  
+
       </div>
     </div>
-  
+
     <!-- mobile menu -->
     <div class="mobile-menu hidden md:hidden">
-      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Features</a>
-      <a href="#" class="block py-2 px-4 text-sm hover:bg-gray-200">Pricing</a>
+      <a href="#features" class="block py-2 px-4 text-white text-sm hover:bg-gray-200"><strong> Features</strong></a>
     </div>
+
   </nav>
+
+  <!-- Dismissable alert from tailwind For Django Messages framework -->
+  {% if messages %}
+  {% for message in messages %}
+  <div class="flex justify-between text-white shadow-inner rounded p-3 bg-purple-500">
+    <p class="self-center"><strong>{{message}}</strong></p>
+    <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+
+  <!-- Video background-->
+  <div class="pl-24 pt-8 pb-24 px-8 grid grid-cols-2 hover:drop-shadow-xl">
+    <div class="text py-8">
+      <h2 class="tracking-tight hover:tracking-wide">Never Stop To </h2>
+      <h3 class="tracking-tight hover:tracking-wide">Exploring The World</h3>
+      <p class="tracking-tight hover:tracking-wide font-sans">You Don't Make A Photograph Just With A Camera. You Bring To The Act
+        Of Photography All The Pictures You Have Seen, The Books You Have Read, The Music You Have Heard, The People You
+        Have Loved.</p>
+        {% if request.user.is_authenticated %} 
+          {% if role == 'Customer' %}
+          <a href="/location" class="mr-3">Hire A Photographer</a>
+          {% else %}
+          <a href="/blog/{{id}}_a" class="">Showcase Your Work</a>
+          {% endif %}
+
+        {% else %}
+          <a href="/accounts/login" class="mr-3">Hire A Photographer</a>
+          <a href="/accounts/login" class="">Join as Photographer</a>
+        {% endif %} 
+        
+    </div>
+    <div class=" px-6 py-8 transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-90 duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="550" height="400"
+        viewBox="0 0 756.4834 771.24242" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <title>moments</title>
+        <path
+          d="M721.52783,375.35584a2.659,2.659,0,0,0-2.65625,2.65625V560.37244a2.659,2.659,0,0,0,2.65625,2.65625H975.58545a2.659,2.659,0,0,0,2.65625-2.65625V378.01209a2.659,2.659,0,0,0-2.65625-2.65625Z"
+          transform="translate(-221.7583 -64.37879)" fill="#e6e6e6" />
+        <path
+          d="M961.555,391.66566v129.6a3.26061,3.26061,0,0,1-3.26,3.26h-220a2.31873,2.31873,0,0,1-.46-.04,3.25569,3.25569,0,0,1-2.8-3.22v-129.6a3.26057,3.26057,0,0,1,3.26-3.26h220A3.2606,3.2606,0,0,1,961.555,391.66566Z"
+          transform="translate(-221.7583 -64.37879)" fill="#fff" />
+        <circle cx="694.19778" cy="371.51624" r="11.8189" fill="#ff6584" />
+        <circle cx="504.70505" cy="317.52982" r="3.89659" fill="#3f3d56" />
+        <circle cx="748.37174" cy="317.52982" r="3.89659" fill="#3f3d56" />
+        <circle cx="504.70505" cy="492.097" r="3.89659" fill="#3f3d56" />
+        <circle cx="748.37174" cy="492.097" r="3.89659" fill="#3f3d56" />
+        <circle cx="585.76023" cy="403.73305" r="14.18014" fill="#00b0ff" />
+        <polygon points="587.127 446.444 584.223 446.444 585.547 401.597 587.127 446.444" fill="#3f3d56" />
+        <polygon points="585.803 410.097 588.921 405.783 585.76 411.165 585.419 410.567 585.803 410.097"
+          fill="#3f3d56" />
+        <polygon points="585.461 414.454 582.343 410.14 585.504 415.521 585.846 414.923 585.461 414.454"
+          fill="#3f3d56" />
+        <circle cx="715.83653" cy="403.73305" r="14.18014" fill="#00b0ff" />
+        <polygon points="717.203 446.444 714.299 446.444 715.623 401.597 717.203 446.444" fill="#3f3d56" />
+        <polygon points="715.879 410.097 718.997 405.783 715.837 411.165 715.495 410.567 715.879 410.097"
+          fill="#3f3d56" />
+        <polygon points="715.538 414.454 712.42 410.14 715.58 415.521 715.922 414.923 715.538 414.454" fill="#3f3d56" />
+        <circle cx="626.83759" cy="391.36332" r="20.94289" fill="#00b0ff" />
+        <polygon points="628.856 454.444 624.567 454.444 626.522 388.209 628.856 454.444" fill="#3f3d56" />
+        <polygon points="626.901 400.762 631.506 394.391 626.838 402.339 626.333 401.456 626.901 400.762"
+          fill="#3f3d56" />
+        <polygon points="626.396 407.197 621.791 400.825 626.459 408.774 626.964 407.891 626.396 407.197"
+          fill="#3f3d56" />
+        <circle cx="677.91049" cy="383.36332" r="20.94289" fill="#00b0ff" />
+        <polygon points="679.929 446.444 675.64 446.444 677.595 380.209 679.929 446.444" fill="#3f3d56" />
+        <polygon points="677.974 392.762 682.578 386.391 677.91 394.339 677.406 393.456 677.974 392.762"
+          fill="#3f3d56" />
+        <polygon points="677.469 399.197 672.864 392.825 677.532 400.774 678.037 399.891 677.469 399.197"
+          fill="#3f3d56" />
+        <circle cx="545.44015" cy="383.36332" r="20.94289" fill="#00b0ff" />
+        <polygon points="547.459 446.444 543.169 446.444 545.125 380.209 547.459 446.444" fill="#3f3d56" />
+        <polygon points="545.503 392.762 550.108 386.391 545.44 394.339 544.935 393.456 545.503 392.762"
+          fill="#3f3d56" />
+        <polygon points="544.999 399.197 540.394 392.825 545.062 400.774 545.566 399.891 544.999 399.197"
+          fill="#3f3d56" />
+        <path
+          d="M849.765,524.52565H738.295a2.31873,2.31873,0,0,1-.46-.04,3.25569,3.25569,0,0,1-2.8-3.22v-27.83a189.75911,189.75911,0,0,1,31.74-2.58c39.57,0,72.67,11.34,80.97,26.52A15.25182,15.25182,0,0,1,849.765,524.52565Z"
+          transform="translate(-221.7583 -64.37879)" fill="#3f3d56" />
+        <path
+          d="M961.555,514.95564v6.31a3.26061,3.26061,0,0,1-3.26,3.26H834.965a62.86069,62.86069,0,0,1,12.78-7.15c15.11005-6.48,36.42-10.52,60.03-10.52C928.295,506.85566,947.065,509.89564,961.555,514.95564Z"
+          transform="translate(-221.7583 -64.37879)" fill="#3f3d56" />
+        <path
+          d="M862.88232,64.37879a2.64744,2.64744,0,0,0-1.24414.3125l-224.2998,119.311a2.66049,2.66049,0,0,0-1.09668,3.59277l85.63965,161a2.66021,2.66021,0,0,0,3.59375,1.09814l224.29883-119.311a2.66,2.66,0,0,0,1.09765-3.59277l-85.64062-161a2.63828,2.63828,0,0,0-1.56934-1.29346A2.66893,2.66893,0,0,0,862.88232,64.37879Z"
+          transform="translate(-221.7583 -64.37879)" fill="#e6e6e6" />
+        <path
+          d="M856.91328,85.67873l60.86083,114.41553a3.26168,3.26168,0,0,1-1.34832,4.41285L722.1983,307.82217a2.75021,2.75021,0,0,1-.42991.18748,3.25969,3.25969,0,0,1-3.98293-1.5358L656.92462,192.05832a3.26164,3.26164,0,0,1,1.34834-4.41282L852.50044,84.33044A3.26167,3.26167,0,0,1,856.91328,85.67873Z"
+          transform="translate(-221.7583 -64.37879)" fill="#fff" />
+        <circle cx="505.33769" cy="141.51373" r="28.62439" fill="#ff6584" />
+        <path
+          d="M847.77,241.61551,723.7954,307.5611a2.86449,2.86449,0,0,1-.4828.20973l4.61006-132.75227a4.6501,4.6501,0,0,1,7.14639-3.80137L810.67447,218.442l3.62,2.25849Z"
+          transform="translate(-221.7583 -64.37879)" fill="#3f3d56" />
+        <polygon
+          points="626.012 177.237 583.684 199.752 588.408 158.518 588.747 155.548 588.916 154.063 592.536 156.322 626.012 177.237"
+          opacity="0.2" />
+        <path
+          d="M916.79823,204.89747,809.57036,261.935l4.72413-41.23452.33878-2.96961,6.15432-53.73536c.40391-3.52207,4.58892-5.95415,7.87393-4.81214a5.54073,5.54073,0,0,1,.64853.27881Z"
+          transform="translate(-221.7583 -64.37879)" fill="#3f3d56" />
+        <circle cx="423.01582" cy="123.09118" r="3.89659" fill="#3f3d56" />
+        <circle cx="638.14123" cy="8.65993" r="3.89659" fill="#3f3d56" />
+        <circle cx="504.99642" cy="277.21088" r="3.89659" fill="#3f3d56" />
+        <circle cx="720.12183" cy="162.77963" r="3.89659" fill="#3f3d56" />
+        <path
+          d="M917.19287,835.53162a2.66049,2.66049,0,0,0,3.25-1.88476l46.88086-176.23145a2.65676,2.65676,0,0,0-1.88477-3.25l-245.51953-65.3125a2.65795,2.65795,0,0,0-3.25,1.88477L669.78955,766.96912a2.65591,2.65591,0,0,0,1.88477,3.25Z"
+          transform="translate(-221.7583 -64.37879)" fill="#e6e6e6" />
+        <path
+          d="M947.68743,666.32033,914.3705,791.56463A3.26061,3.26061,0,0,1,910.382,793.877L697.77587,737.32049a2.31951,2.31951,0,0,1-.43428-.15689,3.25569,3.25569,0,0,1-1.87809-3.83162l33.31692-125.24431a3.26057,3.26057,0,0,1,3.98851-2.31238l212.60612,56.55652A3.26061,3.26061,0,0,1,947.68743,666.32033Z"
+          transform="translate(-221.7583 -64.37879)" fill="#fff" />
+        <path
+          d="M919.10325,773.77339l-4.73275,17.79124A3.26061,3.26061,0,0,1,910.382,793.877L697.77587,737.32049a2.31951,2.31951,0,0,1-.43428-.15689,3.25569,3.25569,0,0,1-1.87809-3.83162l4.73274-17.79124Z"
+          transform="translate(-221.7583 -64.37879)" fill="#3f3d56" />
+        <rect x="790.23801" y="755.60062" width="35" height="4"
+          transform="translate(0.14887 -246.56624) rotate(14.89658)" fill="#ccc" />
+        <rect x="712.4435" y="734.90607" width="35" height="4"
+          transform="translate(-7.78575 -227.26272) rotate(14.89658)" fill="#ccc" />
+        <rect x="868.03252" y="776.29516" width="35" height="4"
+          transform="translate(8.08348 -265.86976) rotate(14.89658)" fill="#ccc" />
+        <circle cx="501.24686" cy="532.0762" r="3.89659" fill="#3f3d56" />
+        <circle cx="736.72426" cy="594.71684" r="3.89659" fill="#3f3d56" />
+        <circle cx="456.36999" cy="700.77643" r="3.89659" fill="#3f3d56" />
+        <circle cx="691.84739" cy="763.41706" r="3.89659" fill="#3f3d56" />
+        <rect x="866.88787" y="765.12295" width="19.45264" height="3.08772"
+          transform="matrix(-0.96625, -0.25759, 0.25759, -0.96625, 1304.40081, 1668.89127)" fill="#3f3d56" />
+        <path
+          d="M731.51554,727.18638l3.64,1.929,147.386,39.29132,2.14705-2.73571a32.257,32.257,0,0,0,6.77567-16.24608c.49976-4.43415.03629-9.09549-3.08735-11.89748l5.04866-45.30923L811.91165,670.378l-38.32226,17.0556s-14.81257-4.22686-25.57635,3.68865a24.44966,24.44966,0,0,0-8.40416,11.69857l-1.71215,5.15178Z"
+          transform="translate(-221.7583 -64.37879)" fill="#00b0ff" />
+        <circle cx="542.32729" cy="670.69148" r="18.83509" fill="#3f3d56" />
+        <circle cx="542.32729" cy="670.69148" r="9.91321" fill="#ccc" />
+        <circle cx="632.13128" cy="694.63214" r="18.83509" fill="#3f3d56" />
+        <circle cx="632.13128" cy="694.63214" r="9.91321" fill="#ccc" />
+        <polygon
+          points="565.159 623.415 609.185 635.147 614.56 636.577 623.634 638.998 623.81 638.335 625.939 630.357 628.329 621.398 622.292 619.792 616.918 618.356 607.399 615.817 602.024 614.387 591.034 611.457 565.159 623.415"
+          fill="#fff" />
+        <polygon
+          points="630.796 640.91 654.064 647.113 655.285 642.548 657.407 634.569 658.759 629.514 655.352 628.607 649.978 627.171 635.485 623.309 630.796 640.91"
+          fill="#fff" />
+        <rect x="838.10172" y="716.01073" width="3.08772" height="5.86667"
+          transform="matrix(-0.96625, -0.25759, 0.25759, -0.96625, 1244.00411, 1565.53343)" fill="#3f3d56" />
+        <rect x="792.72161" y="693.84694" width="3.08772" height="5.86667"
+          transform="translate(1450.36994 44.42414) rotate(104.9272)" fill="#3f3d56" />
+        <path
+          d="M790.043,683.2363h.33966a6.45333,6.45333,0,0,1,6.45333,6.45333v0a6.45333,6.45333,0,0,1-6.45333,6.45333H790.043a0,0,0,0,1,0,0V683.2363A0,0,0,0,1,790.043,683.2363Z"
+          transform="translate(1160.68699 1496.1095) rotate(-165.0728)" fill="#3f3d56" />
+        <path d="M737.89673,707.97261A9.97473,9.97473,0,0,0,748.013,691.12226a24.44966,24.44966,0,0,0-8.40416,11.69857Z"
+          transform="translate(-221.7583 -64.37879)" fill="#3f3d56" />
+        <polygon points="616.918 618.356 623.81 638.335 625.939 630.357 622.292 619.792 616.918 618.356"
+          fill="#f2f2f2" />
+        <polygon points="649.978 627.171 655.285 642.548 657.407 634.569 655.352 628.607 649.978 627.171"
+          fill="#f2f2f2" />
+        <polygon points="602.024 614.387 609.185 635.147 614.56 636.577 607.399 615.817 602.024 614.387"
+          fill="#f2f2f2" />
+        <circle cx="40.01667" cy="298.31341" r="12" fill="#00b0ff" />
+        <path d="M266.84016,351.82508a11.984,11.984,0,0,1-13.13049,19.73407,11.98967,11.98967,0,1,0,13.13049-19.73407Z"
+          transform="translate(-221.7583 -64.37879)" opacity="0.2" />
+        <ellipse cx="348.51667" cy="311.31341" rx="29.5" ry="12" fill="#3f3d56" />
+        <path
+          d="M570.275,363.6922q-1.51913,0-3,.06147c14.88324.61151,26.5,5.72308,26.5,11.93853s-11.61676,11.327-26.5,11.93854q1.47978.06079,3,.06146c16.29242,0,29.5-5.37262,29.5-12S586.56739,363.6922,570.275,363.6922Z"
+          transform="translate(-221.7583 -64.37879)" opacity="0.2" />
+        <path
+          d="M608.775,375.6922h-148v-16a3,3,0,0,0-3-3h-82a3,3,0,0,0-3,3v16h-86v-10a3,3,0,0,0-3-3h-44a3,3,0,0,0-3,3v10h-12a2.996,2.996,0,0,0-3,3v197a2.996,2.996,0,0,0,3,3h384a2.996,2.996,0,0,0,3-3v-197A2.996,2.996,0,0,0,608.775,375.6922Z"
+          transform="translate(-221.7583 -64.37879)" fill="#3f3d56" />
+        <path
+          d="M608.7583,564.00037h-384a2.996,2.996,0,0,1-3-3v14a2.996,2.996,0,0,0,3,3h384a2.996,2.996,0,0,0,3-3v-14A2.996,2.996,0,0,1,608.7583,564.00037Z"
+          transform="translate(-221.7583 -64.37879)" opacity="0.2" />
+        <rect x="0.01667" y="403.31341" width="390" height="38" opacity="0.2" />
+        <rect x="0.01667" y="384.31341" width="390" height="38" opacity="0.2" />
+        <rect x="0.01667" y="393.31341" width="390" height="38" fill="#00b0ff" />
+        <circle cx="195.01667" cy="412.31341" r="76" fill="#00b0ff" />
+        <path
+          d="M475.31532,428.228a75.99569,75.99569,0,0,1-124.08069,86.92835A75.99623,75.99623,0,1,0,475.31532,428.228Z"
+          transform="translate(-221.7583 -64.37879)" opacity="0.2" />
+        <circle cx="195.01667" cy="412.31341" r="56.55814" fill="#3f3d56" />
+        <path
+          d="M460.775,476.6922a43.723,43.723,0,0,1-3.57,17.37,43.131,43.131,0,0,1-4.75,8.37,43.99842,43.99842,0,1,1-61.42-61.42,43.12475,43.12475,0,0,1,8.37-4.75,44.00517,44.00517,0,0,1,61.37,40.43Z"
+          transform="translate(-221.7583 -64.37879)" fill="#fff" />
+        <path
+          d="M460.305,470.28217a43.92832,43.92832,0,0,0-16.44751-28.26538A44.00211,44.00211,0,0,1,447.205,483.0622a43.131,43.131,0,0,1-4.75,8.37,43.973,43.973,0,0,1-62.76929,8.91852,43.9784,43.9784,0,0,0,72.76929,2.08148,43.131,43.131,0,0,0,4.75-8.37,44.01773,44.01773,0,0,0,3.1-23.78Z"
+          transform="translate(-221.7583 -64.37879)" opacity="0.2" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="bg-gradient-to-r from-pink-200 to-blue-400 px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-24" id="features">
+    <div class="max-w-screen-xl mx-auto">
+      <h3 class=" leading-none  text-center  font-extrabold text-4xl">
+        Features
+      </h3>
+
+      <div class="flex flex-col items-center flex-wrap lg:flex-row lg:items-stretch lg:flex-no-wrap lg:justify-between">
+        <div style="background-color: rgb(58, 56, 54);"
+          class="transition ease-in-out delay-100 hover:-translate-y-2 hover:translate-x-2 hover:scale-110 duration-300 w-full max-w-sm mt-6 lg:mt-8  rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
+          <div class="p-4 inline-block bg-indigo-200 rounded-lg">
+            <svg class="text-indigo-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+              <line x1="9" y1="9" x2="9.01" y2="9" />
+              <line x1="15" y1="9" x2="15.01" y2="9" />
+            </svg>
+          </div>
+          <div class="text-white mt-4 font-bold text-2xl tracking-wide">
+            Amazing People
+          </div>
+          <div class="text-white text-sm">
+            We guarantee that every photographer you ever work with will be an awesome member for your team. We
+            conduct personal interview with every photographer to ensure that we only get the best.
+          </div>
+        </div>
+
+        <div style="background-color: rgb(58, 56, 54);"
+          class="transition ease-in-out delay-100 hover:-translate-y-2 hover:translate-x-2 hover:scale-110 duration-300 w-full max-w-sm mt-6 lg:mt-8  rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
+          <div class="p-4 inline-block bg-green-200 rounded-lg">
+            <svg class="text-green-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+          </div>
+          <div class="text-white mt-4 font-bold text-2xl tracking-wide">
+            Best Rates
+          </div>
+          <div class="text-white text-sm">
+            Be assured that you will always get the best rates. We continously monitor global freelance wage trends to
+            ensure
+            that no one is under or overpaid.
+          </div>
+        </div>
+
+        <div style="background-color: rgb(58, 56, 54);"
+          class="transition ease-in-out delay-100 hover:-translate-y-2 hover:translate-x-2 hover:scale-110 duration-300 w-full max-w-sm mt-8  rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
+          <div class="p-4 inline-block bg-red-200 rounded-lg">
+            <svg class="text-red-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path xmlns="http://www.w3.org/2000/svg"
+                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line xmlns="http://www.w3.org/2000/svg" x1="12" y1="9" x2="12" y2="13" />
+              <line xmlns="http://www.w3.org/2000/svg" x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </div>
+          <div class="text-white mt-4 font-bold text-2xl tracking-wide">
+            Abuse Protection
+          </div>
+          <div class="text-white text-sm">
+            Money is held by us in escrow subject to project completion. If there is any dispute, a customer
+            service representative will manually review the case and take appropriate action.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- carousel popular photographers-->
+  <div class="py-84 pb-3 px-32">
+    <center>
+      <h3 class="leading-none text-gray-300 text-3xl pt-11"><strong>Popular PhotoGraphers</strong></h3>
+      <hr style="width:70%;" class="bg-white mt-3">
+    </center>
+    <div id="carouselExampleCaptions" class="carousel slide relative" data-bs-ride="carousel">
+      <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner relative w-full overflow-hidden">
+        {% for p1, p2 in pphs%}
+        <div class="carousel-item active relative w-full float-center">
+          <div class="flex justify-center w-full">
+            <div class="rounded-lg max-w-xl pb-12 pt-8">
+              <center>
+                <a href="#" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                  <img class="w-32 h-32 border border-blue-500 border-3 rounded-full" src="/media/{{p1.image}}" alt="" />
+                </a>
+
+                <div class="p-6">
+                  <h5 class="text-gray-800 text-xl font-medium mb-2"><strong>{{p1.fname}}
+                      {{p1.lname}}</strong></h5>
+                  <p style="font-size: 0.9rem;" class="text-white mb-3">
+                    {{p1.bio|truncatewords:32}}
+                  </p>
+                  {% if request.user.is_authenticated %}
+                    {% if role == 'Customer' %}
+                    <a href="/location"><button
+                        class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2 mr-1">Book Now</button></a>
+                    <a href="/blog/{{p1.photographer_id}}_a"><button
+                        class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2">Know More</button></a>
+                    {% else %}
+                    <a href="/blog/{{p1.photographer_id}}_a"><button
+                        class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2">Know More</button></a>
+                    {% endif %}
+                  {% else %}
+                  <a href="/accounts/login"><button
+                      class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2 mr-1">Book Now</button></a>
+                  <a href="/blog/{{p1.photographer_id}}_a"><button
+                      class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2">Know More</button></a>
+                  {% endif %}
+                </div>
+              </center>
+            </div>
+          </div>
+        </div>
+        {% for ph in p2 %}
+        <div class="carousel-item  relative w-full float-center">
+          <div class="flex justify-center w-full">
+            <div class="rounded-lg max-w-xl pb-12 pt-8">
+              <center>
+                <a href="#" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                  <img class="w-32 h-32 border border-blue-500 border-3 rounded-full" src="/media/{{ph.image}}" alt="" />
+                </a>
+
+                <div class="p-6">
+                  <h5 class="text-gray-800 text-xl font-medium mb-2"><strong>{{ph.fname}}
+                      {{ph.lname}}</strong></h5>
+                  <p style="font-size: 0.9rem;" class="text-white mb-3">
+                    {{ph.bio|truncatewords:32}}
+                  </p>
+                  {% if request.user.is_authenticated %}
+                  {% if role == 'Customer' %}
+                  <a href="/location"><button
+                      class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2 mr-1">Book Now</button></a>
+                  <a href="/blog/{{ph.photographer_id}}_a"><button
+                      class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2">Know More</button></a>
+                  {% else %}
+                  <a href="/blog/{{ph.photographer_id}}_a"><button
+                      class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2">Know More</button></a>
+                  {% endif %}
+                  {% else %}
+                  <a href="/accounts/login"><button
+                      class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2 mr-1">Book Now</button></a>
+                  <a href="/blog/{{ph.photographer_id}}_a"><button
+                      class="border border-gray-600 border-1  hover:bg-gray-300  py-1 px-2">Know More</button></a>
+                  {% endif %}
+                </div>
+              </center>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+      <button
+        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+        type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
+        type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Recent Posts -->
+  <div class="bg-gradient-to-r from-pink-200 to-blue-400 px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-indigo-100"
+    id="blog-posts">
+    <center>
+      <h3 class="leading-none text-gray-600 text-3xl pt-6"><strong>Recent Posts</strong></h3>
+    </center>
+    <div class="grid grid-cols-3 px-16 pt-10 pb-16">
+      {% for blog in blogs %}
+      <a href="/blog/{{blog.photographer.photographer_id}}_a" class="flex w-full max-w-sm mt-2 lg:mt-8">
+        <div class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg
+        bg-gray-100 relative xl:flex xl:flex-row-reverse xl:items-center xl:px-6 xl:py-6">
+          <div class="w-full h-48 bg-cover rounded-t-lg xl:w-32 xl:h-20 xl:rounded-lg xl:ml-2" style='background-image:
+          url("/media/{{blog.img1}}");'>
+          </div>
+          <div class="p-3 xl:p-0">
+            <div class="text-lg font-bold">{{blog.head|truncatechars:40}}</div>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <!-- Testimonials -->
+  <div class="pt-12 pb-2">
+    <center>
+      <h3 class="text-gray-200 font-extrabold text-4xl">Testimonials</h3>
+      <hr style="width: 70%; color:white;" class="my-2">
+    </center>
+    <div class="grid grid-cols-1 mt-4">
+      {% for c1, c2 in customers%}
+      <div style="padding-left: 15%;" class="grid grid-cols-2">
+        <div class="inline-block  lg:flex mt-4">
+          <img src="/media/{{c1.image}}" class="w-32 h-32 border-white border-2 border-white border-2  rounded-full" />
+          <div class="text-xs lg:text-md mt-3 text-white pl-3">
+            <h1 class="font-bold text-black mt-2">{{c1.fname}} {{c1.lname}}</h1>
+            <p class="mt-2">Lorem ipsum dolor sit amet consectetur
+              adipisicing <br>elit.Temporibus perspiciatis facere <br>nemo qui quas! ea ipsa inventore facere magnam.
+            </p>
+          </div>
+        </div>
+
+        <div class="inline-block  lg:flex mt-4">
+          <img src="/media/{{c2.image}}" class="w-32 h-32 border-white border-2  rounded-full" />
+          <div class=" pl-3 text-xs lg:text-md text-white mt-3">
+            <h1 class="font-bold text-black   mt-2">{{c2.fname}} {{c2.lname}}</h1>
+            <p class="mt-2">Lorem ipsum dolor sit amet consectetur
+              adipisicing <br>elit.Temporibus perspiciatis facere <br>nemo qui quas! ea ipsa inventore facere magnam.
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- <div style="padding-left: 15%;" class="grid grid-cols-1">
+        <div class="inline-block  lg:flex mt-4">
+            <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-32 h-32 border-white border-2  rounded-full"/>
+            <div class="text-xs lg:text-md text-white mt-3 pl-3">
+              <h1 class="font-bold text-black  mt-2">Rhythm Anand</h1>
+              <p class="mt-2">Lorem ipsum dolor sit amet consectetur 
+                adipisicing <br>elit.
+                
+                Temporibus perspiciatis facere <br>
+                nemo qui quas! 
+                
+                ea ipsa inventore facere magnam.</p>
+            </div>
+        </div>
+
+        <div class="inline-block  lg:flex mt-4">
+          <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" class="w-32 h-32 border-white border-2  rounded-full"/>
+          <div class=" pl-3 text-xs lg:text-md text-white mt-3">
+            <h1 class=" font-bold  text-black  mt-2">Rhythm Anand</h1>
+            <p class="mt-2">Lorem ipsum dolor sit amet consectetur 
+              adipisicing <br>elit.
+              
+              Temporibus perspiciatis facere <br>
+              nemo qui quas! 
+              
+              ea ipsa inventore facere magnam.</p>
+          </div>
+       </div>
+       </div> -->
+    </div>
+  </div>
+  </main>
+
+  <footer class="bg-gradient-to-r from-black to-blue-500 mt-5 py-8 px-5">
+    <div class="flex flex-col items-center lg:flex-row-reverse justify-between">
+      <div class="">
+        <a class="text-white mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Home</a>
+        <a class="text-white mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Careers</a>
+      </div>
+      <div class="mt-4">
+        <img src="" class="w-32">
+      </div>
+      <div class="text-white mt-4 text-xs font-bold text-gray-500">
+        &copy; 2022 BiCaption | MIT License
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    var alert_del = document.querySelectorAll('.alert-del');
+    alert_del.forEach((x) =>
+      x.addEventListener('click', function () {
+        x.parentElement.classList.add('hidden');
+      })
+    );
+  </script>
+
+  <!-- Sending feeback mail to customer -->
+  <script src="https://smtpjs.com/v3/smtp.js">
+  </script>
+
+  {% for ap in feedback %}
+  <script>
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username: "rhythma.ug19.cs@nitp.ac.in",
+      Password: "Aman@1234",
+      To: 'rhythmanand6@gmail.com',
+      From: "rhythma.ug19.cs@nitp.ac.in",
+      Subject: "Verify you account",
+      Body: "{{ap.customer}}, please fill out the feedback form. Link\n http://127.0.0.1:8000/feedback/{{ap.id}}"
+    })
+      .then(function (message) {
+        console.log("mail sent successfully");
+        console.log("{{ap.customer}}");
+      });
+  </script>
+  {% endfor %}
   
- 
-   <!-- Video background-->
-  
-  <section class="showcase">
-    <div>
-      <h2 class="logo">BiCaption</h2>
-      
-    </div>
-    <video src="/static/img/vidc.mp4" muted loop autoplay></video>
-    <div class="overlay"></div>
-    <div class="text">
-      <h2>Never Stop To </h2> 
-      <h3>Exploring The World</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat.</p>
-      <a href="# " class="mr-3">Hire A Photographer</a>
-      <a href="#" class="">Find a customer</a>
-    </div>
-    
-  </section>
+</body>
 
-        <div class="px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-indigo-100" style="margin-top: 570px;" id="features">
-          <div class="max-w-screen-xl mx-auto">
-            <h3 class="leading-none  text-center  font-extrabold text-4xl">
-              Features
-            </h3>
-
-            <div class="flex flex-col items-center flex-wrap lg:flex-row lg:items-stretch lg:flex-no-wrap lg:justify-between">
-              <div class="w-full max-w-sm mt-6 lg:mt-8 bg-gray-100 rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
-                <div class="p-4 inline-block bg-indigo-200 rounded-lg">
-                  <svg class="text-indigo-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-                    <line x1="9" y1="9" x2="9.01" y2="9"/>
-                    <line x1="15" y1="9" x2="15.01" y2="9"/>
-                  </svg>
-                </div>
-                <div class="mt-4 font-extrabold text-2xl tracking-wide">
-                  Amazing People
-                </div>
-                <div class="text-sm">
-                  We guarantee that every photographer you ever work with will be an awesome member for your team. We
-                  conduct personal interview with every photographer to ensure that we only get the best.
-                </div>
-              </div>
-
-              <div class="w-full max-w-sm mt-8 bg-gray-100 rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-3">
-                <div class="p-4 inline-block bg-green-200 rounded-lg">
-                  <svg class="text-green-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="1" x2="12" y2="23"/>
-                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                  </svg>
-                </div>
-                <div class="mt-4 font-extrabold text-2xl tracking-wide">
-                  Best Rates
-                </div>
-                <div class="text-sm">
-                  Be assured that you will always get the best rates. We continously monitor global freelance wage trends to ensure
-                  that no one is under or overpaid.
-                </div>
-              </div>
-
-              <div class="w-full max-w-sm mt-8 bg-gray-100 rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
-                <div class="p-4 inline-block bg-red-200 rounded-lg">
-                  <svg class="text-red-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path xmlns="http://www.w3.org/2000/svg" d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                    <line xmlns="http://www.w3.org/2000/svg" x1="12" y1="9" x2="12" y2="13"/>
-                    <line xmlns="http://www.w3.org/2000/svg" x1="12" y1="17" x2="12.01" y2="17"/>
-                  </svg>
-                </div>
-                <div class="mt-4 font-extrabold text-2xl tracking-wide">
-                  Abuse Protection
-                </div>
-                <div class="text-sm">
-                  Money is held by us in escrow subject to project completion. If there is any dispute, a customer
-                  service representative will manually review the case and take appropriate action.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-gray-100" id="cards">
-          <div class="max-w-screen-xl mx-auto">
-            <h3 class="leading-none font-black text-3xl">Popular PhotoGraphers</h3>
-
-            <div class="lg:flex justify-between lg:mt-8">
-              <div class="lg:mx-2 flex flex-col items-center">
-                <div class="flex-1 flex w-full max-w-sm pt-16 lg:pt-0">
-                  <div class="w-full p-8 sm:p-12 lg:px-8 xl:px-12 shadow-lg rounded bg-gray-100 relative">
-                    <div class="text-lg font-bold text-gray-700 leading-tight">Senior photographer - Figma</div>
-                    <div>
-                      <div class="flex justify-between mt-6 text-xs font-bold">
-                        <div class="flex items-start">
-                          <svg class="text-gray-400 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                          </svg>
-                          <span class="ml-1 text-gray-500">New York City</span>
-                        </div>
-
-                        <div class="flex items-start ml-4">
-                          <svg class="text-gray-400 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect xmlns="http://www.w3.org/2000/svg" x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                            <path xmlns="http://www.w3.org/2000/svg" d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                          </svg>
-                          <span class="ml-1 text-gray-500">Google (3 Years)</span>
-                        </div>
-                      </div>
-                      <div class="text-center flex flex-row justify-between flex-wrap justify-between items-center text-xs font-bold">
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-green-200 text-green-600">Full Time</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-indigo-200 text-indigo-600">Remote</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-blue-200 text-blue-600">4 Years Exp</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-purple-200 text-purple-600">$30/Hr</span>
-                      </div>
-                      <div class="mt-12 flex items-center">
-                        <div class="w-16 h-16 bg-cover rounded-full border-2 border-gray-700" alt="" style='background-image: url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80");'></div>
-                        <div class="ml-5">
-                          <div class="font-bold text-gray-800">
-                            Sasha Sloan
-                          </div>
-                          <div class="text-xs text-gray-500">Hired 3 Hours ago</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="lg:mx-2 flex flex-col items-center">
-                <div class="flex-1 flex w-full max-w-sm pt-16 lg:pt-0">
-                  <div class="w-full p-8 sm:p-12 lg:px-8 xl:px-12 shadow-lg rounded bg-gray-100 relative">
-                    <div class="text-lg font-bold text-gray-700 leading-tight">photograph Leader- InVision</div>
-                    <div>
-                      <div class="flex justify-between mt-6 text-xs font-bold">
-                        <div class="flex items-start">
-                          <svg class="text-gray-400 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                          </svg>
-                          <span class="ml-1 text-gray-500">Palo Alto</span>
-                        </div>
-
-                        <div class="flex items-start ml-4">
-                          <svg class="text-gray-400 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect xmlns="http://www.w3.org/2000/svg" x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                            <path xmlns="http://www.w3.org/2000/svg" d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                          </svg>
-                          <span class="ml-1 text-gray-500">Amazon (8 Years)</span>
-                        </div>
-                      </div>
-                      <div class="text-center flex flex-row justify-between flex-wrap justify-between items-center text-xs font-bold">
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-yellow-200 text-yellow-600">Part Time</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-indigo-200 text-indigo-600">Remote</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-blue-200 text-blue-600">14 Years Exp</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-purple-200 text-purple-600">$45/Hr</span>
-                      </div>
-                      <div class="mt-12 flex items-center">
-                        <div class="w-16 h-16 bg-cover rounded-full border-2 border-gray-700" alt=""
-                                                                                              style='background-image: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&q=80");'></div>
-                        <div class="ml-4">
-                          <div class="font-bold text-gray-800">
-                            Nathan Lan
-                          </div>
-                          <div class="text-xs text-gray-500">Hired 9 Hours ago</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="lg:mx-2 flex flex-col items-center">
-                <div class="flex-1 flex w-full max-w-sm pt-16 lg:pt-0">
-                  <div class="w-full p-8 sm:p-12 lg:px-8 xl:px-12 shadow-lg rounded bg-gray-100 relative">
-                    <div class="text-lg font-bold text-gray-700 leading-tight">Junior photographer - Figma</div>
-                    <div>
-                      <div class="flex justify-between mt-6 text-xs font-bold">
-                        <div class="flex items-start">
-                          <svg class="text-gray-400 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                          </svg>
-                          <span class="ml-1 text-gray-500">San Francisco</span>
-                        </div>
-
-                        <div class="flex items-start ml-4">
-                          <svg class="text-gray-400 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect xmlns="http://www.w3.org/2000/svg" x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                            <path xmlns="http://www.w3.org/2000/svg" d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-                          </svg>
-                          <span class="ml-1 text-gray-500">AirBnB (1 Years)</span>
-                        </div>
-                      </div>
-                      <div class="text-center flex flex-row justify-between flex-wrap justify-between items-center text-xs font-bold">
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-yellow-200 text-yellow-600">Part Time</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-indigo-200 text-indigo-600">Remote</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-blue-200 text-blue-600">2 Years Exp</span>
-                        <span class="w-5/12 mt-6 mx-1 p-1 rounded bg-purple-200 text-purple-600">$20/Hr</span>
-                      </div>
-                      <div class="mt-12 flex items-center">
-                        <div class="w-16 h-16 bg-cover rounded-full border-2 border-gray-700" alt=""
-                                                                                              style='background-image:
-                                                                                              url("https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80");'></div>
-                        <div class="ml-4">
-                          <div class="font-bold text-gray-800">
-                            Jeremy Daer
-                          </div>
-                          <div class="text-xs text-gray-500">Hired 2 Days ago</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-indigo-100" id="blog-posts">
-          <div class="max-w-screen-xl mx-auto">
-            <div class="xl:flex">
-              <div>
-                <h3 class="leading-none font-black text-3xl">Popular Posts</h3>
-                <div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-around">
-                  <a href="https://owaiskhan.me" class="flex w-full max-w-sm mt-6 lg:mt-8 xl:mr-8">
-                    <div class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg bg-gray-100 relative">
-                      <div class="w-full h-48 bg-cover rounded-t-lg" style='background-image:
-                      url("https://images.unsplash.com/3/doctype-hi-res.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80");'></div>
-                      <div class="p-6">
-                        <div class="text-lg font-bold">Tips for creating an amazing photograph system</div>
-                        <div class="mt-2 text-gray-900 text-sm">
-                          Learn how to create a new photograph system that is beautiful and efficient for creating your UI
-                          components.
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                  <a href="https://timerse.com" class="flex w-full max-w-sm mt-6 lg:mt-8 xl:mr-8">
-                    <div class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg bg-gray-100 relative">
-                      <div class="w-full h-48 bg-cover rounded-t-lg" style='background-image:
-                      url("https://images.unsplash.com/photo-1572044162444-ad60f128bdea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80");'></div>
-                      <div class="p-6">
-                        <div class="text-lg font-bold">Using a drawing tablet to create beautiful icons</div>
-                        <div class="mt-2 text-gray-900 text-sm">
-                          Good Icons are hard to come by. This article guides you on how to create beautiful sketched
-                          icons using a drawing pad.
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-              <div class="mt-12 xl:mt-0 xl:ml-8">
-                <h3 class="leading-none font-black text-3xl">Recent Posts</h3>
-                <div class="flex flex-col items-center lg:flex-row lg:items-stretch lg:justify-around xl:flex-col">
-                  <a href="https://owaiskhan.me" class="flex w-full max-w-sm mt-6 lg:mt-8">
-                    <div class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg
-                    bg-gray-100 relative xl:flex xl:flex-row-reverse xl:items-center xl:px-6 xl:py-8">
-                      <div class="w-full h-48 bg-cover rounded-t-lg xl:w-32 xl:h-20 xl:rounded-lg xl:ml-2" style='background-image:
-                      url("https://images.unsplash.com/photo-1452830978618-d6feae7d0ffa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=512&q=80");'></div>
-                      <div class="p-6 xl:p-0">
-                        <div class="text-lg font-bold">How to work effectively with freelancers</div>
-                        <div class="mt-2 text-gray-900 text-sm xl:hidden">
-                          Hiring a freelancer for your new project can be challenging if you've never done before. Learn
-                          some tips that will allow you to have a better experience working with freelancers
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                  <a href="https://owaiskhan.me" class="flex w-full max-w-sm mt-6 lg:mt-8">
-                    <div class="transition-all duration-300 cursor-pointer w-full shadow-lg hover:shadow-xl rounded-lg
-                    bg-gray-100 relative xl:flex xl:flex-row-reverse xl:items-center xl:px-6 xl:py-8">
-                      <div class="w-full h-48 bg-cover rounded-t-lg xl:w-32 xl:h-20 xl:rounded-lg xl:ml-2" style='background-image:
-                      url("https://images.unsplash.com/photo-1581287053822-fd7bf4f4bfec?ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80");'></div>
-                      <div class="p-6 xl:p-0">
-                        <div class="text-lg font-bold">How to create smooth React Native animations</div>
-                        <div class="mt-2 text-gray-900 text-sm xl:hidden">
-                          Animations play a vital role in user experience. This article describes how you can create
-                          butter smooth 60 FPS animations easily.
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      </main>
-
-      <footer class="px-5 sm:px-10 md:px-20 py-8">
-        <div class="flex flex-col items-center lg:flex-row-reverse justify-between">
-          <div class="">
-            <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Home</a>
-            <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">About Us</a>
-            <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Careers</a>
-            <!-- <a href="#">About Us</a> -->
-            <!-- <a href="#">Careers</a> -->
-          </div>
-          <div class="mt-4">
-            <img src="" class="w-32">
-          </div>
-          <div class="mt-4 text-xs font-bold text-gray-500">
-            &copy; 2022 BiCaption | MIT License 
-          </div>
-        </div>
-      </footer>
-    </div>
-  </body>
 </html>
-

@@ -1,29 +1,39 @@
 {% extends "account/base.html" %}
 
 {% block content %}
-  <!-- Dismissable alert from bootstrap For Django Messages framework -->
+  <!-- Dismissable alert from tailwind For Django Messages framework -->
   {% if messages %}
   {% for message in messages %}
-  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert"  style="margin-bottom:0px">
-   <strong>{{message}}</strong>
-   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div class="flex justify-between text-white shadow-inner rounded p-3 bg-purple-500">
+    <p class="self-center"><strong>{{message}}</strong></p>
+    <strong class="text-xl align-center cursor-pointer alert-del">&times;</strong>
   </div>
   {% endfor %}
   {% endif %}
 
-  <div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-        <h2 class="display-5 fw-bold">Choose your role</h2>
-        <p class="col-md-8 fs-4"><br>Yoy have logged in successfuly through Google. But before moving ahead you need to specify you role. <br> So choose your role and press the submit role button</p>
-        <form action="/glogin" method="post">{% csrf_token %}
-          <label for="cars">Choose a role:</label><br>
-          <select name="role" id="role">
+
+  <div class="p-5  bg-gray-100 rounded-3">
+    <div class="container-fluid ">
+        <h2 class="ml-4 mt-1 font-extrabold text-4xl ">Choose your role</h2>
+        <p class="col-md-8 ml-4  text-xl "><br>Yoy have logged in successfuly through Google. But before moving ahead you need to specify your role. <br> So choose your role and press the submit role button</p>
+        <form action="/glogin" method="post" class="ml-4 mt-2 text-xl">{% csrf_token %}
+          <label for="cars">Choose a role :</label><br>
+          <select name="role" id="role" class="mt-1 bg-yellow-400 py-2 px-2 text-white rounded">
             <option value="Customer">Customer</option>
             <option value="Photographer">Photographer</option>
-          </select><br>
-          <button class="btn btn-secondary btn-lg" type="submit">Submit role</button>
+          </select>
+          <button class="bg-yellow-400  ml-3 mt-3 font-semibold text-white py-2  rounded-lg px-6" type="submit">Submit </button>
         </form>
     </div>
   </div>
+
+  <script>
+    var alert_del = document.querySelectorAll('.alert-del');
+    alert_del.forEach((x) =>
+      x.addEventListener('click', function () {
+        x.parentElement.classList.add('hidden');
+      })
+    );
+  </script>
 
 {% endblock %}

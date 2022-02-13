@@ -2,20 +2,19 @@
 {% load i18n %}
 
 {% block content %}
-  <div class="p-5 mb-4 bg-light rounded-3">
+  <div class="p-5 mb-4 bg-gray-100 rounded-md">
     <div class="container-fluid py-5">
       {% if process == "connect" %}
-        <h2 class="display-5 fw-bold">{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h2>
-        <p class="col-md-8 fs-4">{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+        <h2 class="text-4xl ml-4 text-white  font-bold">{% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}</h2>
+        <p class="col-md-8  mt-1 ml-4 text-2xl ">{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
       {% else %}
-        <h2 class="display-5 fw-bold">{% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}</h2>
-        <p class="col-md-8 fs-4">{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+        <h2 class=" text-4xl ml-4 font-bold">{% blocktrans with provider.name as provider %}Sign In Via <span class="text-yellow-400"> {{ provider }} </span>{% endblocktrans %}</h2>
+        <p class="col-md-8 ml-4 mt-1 text-2xl fs-4">{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}. Do you want to continue ?{% endblocktrans %}</p>
       {% endif %} 
       <form method="post">
         {% csrf_token %}
-        <button class="btn btn-secondary btn-lg" type="submit">{% trans "Continue" %}</button>
+        <button class="bg-yellow-400  ml-4 mt-2 font-semibold text-white py-3 rounded-lg px-5" type="submit">{% trans "Continue" %}</button>
       </form>
-     
     </div>
   </div>
 
