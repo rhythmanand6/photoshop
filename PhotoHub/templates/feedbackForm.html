@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 hover:drop-shadow-xl">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+
+                <div class="flex space-x-4">
+                    <!-- logo -->
+                    <div>
+                        <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
+                            <svg class="h-6 w-6 mr-1 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg>
+                            <span class="font-extrabold text-gray-800">BiCaption</span>
+                        </a>
+                    </div>
+
+                    <!-- primary nav -->
+                    <div class="hidden md:flex items-center space-x-1">
+
+                        <a href="#features"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Features</strong></a>
+
+                        {% if request.user.is_authenticated%}
+                        {% if role == 'Photographer' %}
+                        <a href="/blog/{{id}}_a"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Blog</strong></a>
+                        {% endif %}
+                        {% if role == 'Customer'%}
+                        <a href="/location"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                                Now</strong></a>
+                        {% endif %}
+
+                        {% else %}
+                        <a href="/accounts/login"
+                            class="py-5 px-3 text-white tracking-normal hover:tracking-wide hover:drop-shadow-lg"><strong>Book
+                                Now</strong></a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- secondary nav -->
+                <div class="hidden md:flex  items-center space-x-1">
+                    {% if request.user.is_authenticated %}
+                    <nav :class="{'flex': open, 'hidden': !open}"
+                        class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                        <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                            <button @click="open = !open"
+                                class="flex flex-row items-center space-x-2 w-full px-3 py-2 mt-2 text-sm font-semibold text-left bg-transparent  md:w-auto md:inline md:mt-0 md:ml-4 focus:outline-none">
+                                <span style="color: rgb(6, 90, 90); font-size: medium;"><span
+                                        style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; color: rgb(9, 171, 192);">Hi</span>
+                                    {{request.user}}</span>
+                                <img class="inline ml-3 h-6 w-6 rounded-full absolute border border-blue-500 border-3
+                      " style="z-index: 1000;" src="/media/{{image}}" />
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-16 h-4 transition-transform duration-200 transform">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                x-transition:enter-start="transform opacity-0 scale-95"
+                                x-transition:enter-end="transform opacity-100 scale-100"
+                                x-transition:leave="transition ease-in duration-75"
+                                x-transition:leave-start="transform opacity-100 scale-100"
+                                x-transition:leave-end="transform opacity-0 scale-95"
+                                class=" right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48">
+                                <div
+                                    class="absolute py-2 px-8 ml-10 bg-white text-blue-800 text-sm rounded-sm border border-main-color shadow-sm">
+                                    <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        href="/profile0"
+                                        style="color: rgb(51, 51, 51); border-bottom: 0.8px solid rgb(156, 156, 156);">Profile</a>
+                                    <a class="block px-4 py-2 mt-2 text-sm bg-white md:mt-0 focus:text-gray-900 hover:bg-indigo-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        href="/logout">Logout</a>
+                                </div>
+                            </div>
+                    </nav>
+                    {% else %}
+                    <a href="/accounts/login"
+                        class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Login</a>
+                    <a href="/accounts/signup"
+                        class="py-5 px-3 tracking-normal hover:tracking-wide hover:drop-shadow-lg">Register</a>
+                    {% endif %}
+                </div>
+
+                <!-- mobile button goes here -->
+                <div class="md:hidden flex items-center">
+                    <button class="mobile-menu-button">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- mobile menu -->
+        <div class="mobile-menu hidden md:hidden">
+            <a href="#features" class="block py-2 px-4 text-white text-sm hover:bg-gray-200"><strong>
+                    Features</strong></a>
+        </div>
+
+    </nav>
+
+    <!-- Feedback Form -->
+    <center>
+        <div class="drop-shadow-md w-full max-w-xs my-8  border border-1 round-sm">
+            <form class="rounded px-8 pt-6 pb-8 mb-4" method="POST" action="/feedback/0">{% csrf_token %}
+                <h1>Feedback</h1>
+                <hr style="width:80%;" class="pb-2">
+                <div class="mb-4 text-left">
+                    <p>Rate the Photographer:</p>
+                    <input type="radio" id="1" name="rate" value="1">
+                    <label for="1">Poor</label><br>
+                    <input type="radio" id="2" name="rate" value="2">
+                    <label for="2">Fair</label><br>
+                    <input type="radio" id="3" name="rate" value="3">
+                    <label for="3">Good</label><br>
+                    <input type="radio" id="4" name="rate" value="4">
+                    <label for="4">Very Good</label><br>
+                    <input type="radio" id="5" name="rate" value="5">
+                    <label for="5">Excellent</label><br>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm  mb-2 text-left" for="password">
+                        Feedback :
+                    </label>
+                    <textarea name='query'
+                        class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="password" type="" placeholder="type here...">
+                    </textarea>
+                </div>
+                <input type="number" name="ap_id" value="{{ap_id}}" hidden>
+                <div class="flex items-center justify-between">
+                    <button
+                        class="btn bg-indigo-600 hover:bg-gray-400 text-white font-bold py-1 px-4 rounded-sm"
+                        type="submit">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </center>
+</body>
+
+</html>
