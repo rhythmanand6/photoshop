@@ -689,6 +689,7 @@ def blog(request, pid):
     context={}
     context['ph'] = ph
     context['post'] = post
+    context['len'] = len(post)
     context['pid'] = int(pid[0])
     # rating
     stars=''
